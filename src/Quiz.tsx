@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import './App.css'
 
 function Quiz() {
   const [urgency, setUrgency] = useState(3)

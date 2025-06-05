@@ -1,18 +1,8 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
-import './App.css'
-// src/App.tsx
-import React from "react";
-import LandingPage from "./LandingPage";
-import Quiz from "./Quiz";
-// ... any other imports
-export default function App() {
-  // If you want to simply show LandingPage by default:
-  return <LandingPage />;
-}
-
-
-import Summary from './Summary'
-import RisksSummary from './RisksSummary'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import LandingPage from './LandingPage';
+import Quiz from './Quiz';
+import Summary from './Summary';
+import RisksSummary from './RisksSummary';
 
 function App() {
   return (
@@ -25,7 +15,7 @@ function App() {
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;
