@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import ScorecardRenderer from '../components/ScorecardRenderer'
 import { crspScorecard } from '../lib/sampleScorecards'
 import { createScorecardPdf } from '../utilities/createScorecardPdf'
 import type { Scorecard } from '../lib/computeScorecard'
+import useWatchlist from './useWatchlist'
 
 function Score() {
   const { ticker } = useParams<{ ticker: string }>()
   const [scorecard, setScorecard] = useState<Scorecard | null>(null)
+  const [, addToWatchlist] = useWatchlist()
 
   useEffect(() => {
     if (!ticker) return
@@ -32,13 +34,28 @@ function Score() {
   }
 
   function handleWatchlist() {
-    if (scorecard) console.log('add to watchlist', scorecard.ticker)
+    if (ticker) addToWatchlist(ticker.toUpperCase())
+  }
+
+  async function handleShare() {
+    try {
+      await navigator.clipboard.writeText(window.location.href)
+      alert('Link copied to clipboard!')
+    } catch (err) {
+      console.warn('Failed to copy link', err)
+    }
   }
 
   const actions = (
     <>
       <button className="btn-primary" onClick={handleDownload}>
         Download PDF
+      </button>
+      <button
+        className="bg-slate-200 text-slate-700 rounded-md px-4 py-3 hover:bg-slate-300"
+        onClick={handleShare}
+      >
+        Share Link
       </button>
       <button
         className="bg-slate-200 text-slate-700 rounded-md px-4 py-3 hover:bg-slate-300"
@@ -58,6 +75,11 @@ function Score() {
         ) : (
           <p className="text-slate-600">Scorecard coming soon.</p>
         )}
+        <div className="pt-4 text-center text-sm">
+          <Link to="/watchlist" className="text-primary-600 underline">
+            View Watchlist
+          </Link>
+        </div>
       </main>
     </section>
   )
