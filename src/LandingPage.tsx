@@ -45,6 +45,10 @@ function LandingPage() {
             </button>
           </div>
         </form>
+        <p className="text-center text-sm text-gray-500 mt-4">
+          We follow basic cybersecurity hygiene including rate limiting,
+          spam protection, and no third-party sharing.
+        </p>
       </main>
     </section>
   )
