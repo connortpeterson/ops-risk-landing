@@ -70,6 +70,13 @@ function Score() {
     <section className="min-h-screen flex flex-col items-center justify-center bg-slate-50 text-slate-800 p-6">
       <main className="max-w-md w-full space-y-6 text-center">
         <h1 className="text-2xl font-bold">{ticker?.toUpperCase()} Scorecard</h1>
+        {ticker && (
+          <div className="text-sm">
+            <Link to={`/ticker/${ticker}`} className="text-primary-600 underline">
+              View Stock Snapshot
+            </Link>
+          </div>
+        )}
         {scorecard ? (
           <ScorecardRenderer scorecard={scorecard} actions={actions} />
         ) : (

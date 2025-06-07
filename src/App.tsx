@@ -5,6 +5,7 @@ import Summary from './Summary'
 import RisksSummary from './RisksSummary'
 import Score from './Score'
 import Watchlist from './Watchlist'
+import TickerInfo from './TickerInfo'
 import TrustFooter from './components/TrustFooter'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/summary" element={<Summary />} />
         <Route path="/risks" element={<RisksSummary />} />
         <Route path="/score/:ticker" element={<Score />} />
+        <Route path="/ticker/:ticker" element={<TickerInfo />} />
         <Route path="/watchlist" element={<Watchlist />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
