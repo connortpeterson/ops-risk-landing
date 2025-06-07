@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import ScorecardRenderer from '../components/ScorecardRenderer'
-import { scoreCompany } from '../lib/scoreCompany'
-import type { Scorecard } from '../lib/scoreCompany'
+import { computeScorecard } from '../lib/computeScorecard'
+import type { Scorecard } from '../lib/computeScorecard'
 
 function Score() {
   const { ticker } = useParams<{ ticker: string }>()
@@ -10,7 +10,7 @@ function Score() {
 
   useEffect(() => {
     if (ticker) {
-      void scoreCompany(ticker).then(setScorecard)
+      setScorecard(computeScorecard(ticker))
     }
   }, [ticker])
 
