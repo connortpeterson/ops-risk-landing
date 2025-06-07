@@ -7,6 +7,7 @@ interface Metrics {
   ebitda: string
   ebitdaPeriod?: string
   marketCap: string
+  lastUpdated?: string
 }
 
 function TickerInfo() {
@@ -53,6 +54,15 @@ function TickerInfo() {
               <span className="font-medium">Market Cap</span>
               <span className="font-mono">{data.marketCap}</span>
             </div>
+            {data.lastUpdated && (
+              <p className="text-right text-sm text-slate-500 pt-2">
+                Last updated{' '}
+                {new Date(data.lastUpdated).toLocaleString(undefined, {
+                  dateStyle: 'medium',
+                  timeStyle: 'short',
+                })}
+              </p>
+            )}
           </div>
         ) : (
           <p className="text-slate-600 text-center">No data available.</p>
