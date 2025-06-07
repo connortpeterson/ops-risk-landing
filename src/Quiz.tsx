@@ -1,20 +1,13 @@
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import usePersistentQuizState from './usePersistentQuizState'
 
 function Quiz() {
-  const [urgency, setUrgency] = useState(3)
-  const [area, setArea] = useState('')
-  const [canPay, setCanPay] = useState(false)
+  const [quizState, setQuizState] = usePersistentQuizState()
+  const { urgency, area, canPay } = quizState.answers
   const navigate = useNavigate()
-  
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Store the quiz answers in localStorage to retrieve on risks summary page
-    localStorage.setItem('quizAnswers', JSON.stringify({
-      urgency,
-      area,
-      canPay
-    }))
     // Navigate to risks summary page
     navigate('/risks')
   }
@@ -44,7 +37,12 @@ function Quiz() {
                 min="1"
                 max="5"
                 value={urgency}
-                onChange={(e) => setUrgency(parseInt(e.target.value))}
+                onChange={(e) =>
+                  setQuizState((prev) => ({
+                    ...prev,
+                    answers: { ...prev.answers, urgency: parseInt(e.target.value) },
+                  }))
+                }
                 className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
               />
               <span className="text-sm text-gray-500">High</span>
@@ -67,7 +65,12 @@ function Quiz() {
                   name="area"
                   value="Cybersecurity"
                   checked={area === 'Cybersecurity'}
-                  onChange={(e) => setArea(e.target.value)}
+                  onChange={(e) =>
+                    setQuizState((prev) => ({
+                      ...prev,
+                      answers: { ...prev.answers, area: e.target.value },
+                    }))
+                  }
                   className="h-4 w-4 text-blue-600 focus:ring-blue-500"
                 />
                 <label htmlFor="cybersecurity" className="ml-2 text-gray-700">
@@ -81,7 +84,12 @@ function Quiz() {
                   name="area"
                   value="ERP integration"
                   checked={area === 'ERP integration'}
-                  onChange={(e) => setArea(e.target.value)}
+                  onChange={(e) =>
+                    setQuizState((prev) => ({
+                      ...prev,
+                      answers: { ...prev.answers, area: e.target.value },
+                    }))
+                  }
                   className="h-4 w-4 text-blue-600 focus:ring-blue-500"
                 />
                 <label htmlFor="erp" className="ml-2 text-gray-700">
@@ -95,7 +103,12 @@ function Quiz() {
                   name="area"
                   value="Supply chain"
                   checked={area === 'Supply chain'}
-                  onChange={(e) => setArea(e.target.value)}
+                  onChange={(e) =>
+                    setQuizState((prev) => ({
+                      ...prev,
+                      answers: { ...prev.answers, area: e.target.value },
+                    }))
+                  }
                   className="h-4 w-4 text-blue-600 focus:ring-blue-500"
                 />
                 <label htmlFor="supply" className="ml-2 text-gray-700">
@@ -113,10 +126,15 @@ function Quiz() {
             <div className="flex items-center space-x-4">
               <button
                 type="button"
-                onClick={() => setCanPay(false)}
+                onClick={() =>
+                  setQuizState((prev) => ({
+                    ...prev,
+                    answers: { ...prev.answers, canPay: false },
+                  }))
+                }
                 className={`px-4 py-2 rounded-md ${
-                  !canPay 
-                    ? 'bg-blue-600 text-white' 
+                  !canPay
+                    ? 'bg-blue-600 text-white'
                     : 'bg-gray-200 text-gray-700'
                 }`}
               >
@@ -124,10 +142,15 @@ function Quiz() {
               </button>
               <button
                 type="button"
-                onClick={() => setCanPay(true)}
+                onClick={() =>
+                  setQuizState((prev) => ({
+                    ...prev,
+                    answers: { ...prev.answers, canPay: true },
+                  }))
+                }
                 className={`px-4 py-2 rounded-md ${
-                  canPay 
-                    ? 'bg-blue-600 text-white' 
+                  canPay
+                    ? 'bg-blue-600 text-white'
                     : 'bg-gray-200 text-gray-700'
                 }`}
               >

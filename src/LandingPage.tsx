@@ -1,14 +1,12 @@
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import usePersistentQuizState from './usePersistentQuizState'
 
 function LandingPage() {
-  const [email, setEmail] = useState('')
+  const [quizState, setQuizState] = usePersistentQuizState()
   const navigate = useNavigate()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Store email if needed
-    localStorage.setItem('userEmail', email)
     // Navigate to quiz page
     navigate('/quiz')
   }
@@ -29,8 +27,10 @@ function LandingPage() {
           <div>
             <input
               type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={quizState.email}
+              onChange={(e) =>
+                setQuizState((prev) => ({ ...prev, email: e.target.value }))
+              }
               placeholder="Enter your email"
               required
               className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
