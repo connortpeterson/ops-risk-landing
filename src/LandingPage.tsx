@@ -15,8 +15,8 @@ function LandingPage() {
 
   return (
     <section className="bg-slate-50 min-h-screen">
-      <div className="max-w-2xl mx-auto text-center space-y-6 py-16 px-6">
-        <h1 className="text-4xl sm:text-5xl font-serif tracking-tight text-slate-900">
+      <div className="max-w-4xl mx-auto space-y-8 text-center py-16 px-6">
+        <h1 className="text-3xl sm:text-5xl font-serif tracking-tight text-blue-900">
           Discover Overlooked Biotech Winners
         </h1>
         <p className="text-slate-700 leading-relaxed">
@@ -24,7 +24,7 @@ function LandingPage() {
         </p>
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col sm:flex-row items-center justify-center gap-3"
+          className="card flex flex-col sm:flex-row items-center justify-center gap-3"
         >
           <input
             type="text"
@@ -39,16 +39,16 @@ function LandingPage() {
           </button>
         </form>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm pt-8">
-          <div className="feature space-y-2">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="feature card space-y-2">
             <div className="text-2xl">🧬</div>
             <p>Evidence-Based Scoring</p>
           </div>
-          <div className="feature space-y-2">
+          <div className="feature card space-y-2">
             <div className="text-2xl">📊</div>
             <p>24-Point Diligence Rubric</p>
           </div>
-          <div className="feature space-y-2">
+          <div className="feature card space-y-2">
             <div className="text-2xl">🔬</div>
             <p>Built for Asymmetric Alpha</p>
           </div>
