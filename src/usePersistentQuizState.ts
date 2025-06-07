@@ -7,14 +7,14 @@ export interface QuizAnswers {
 }
 
 export interface QuizState {
-  email: string
+  ticker: string
   answers: QuizAnswers
 }
 
 export const STORAGE_KEY = 'quizState'
 
 export const DEFAULT_STATE: QuizState = {
-  email: '',
+  ticker: '',
   answers: {
     urgency: 3,
     area: '',
@@ -32,7 +32,7 @@ export default function usePersistentQuizState(): [QuizState, React.Dispatch<Rea
       if (stored) {
         const parsed = JSON.parse(stored) as Partial<QuizState>
         return {
-          email: parsed.email ?? DEFAULT_STATE.email,
+            ticker: parsed.ticker ?? DEFAULT_STATE.ticker,
           answers: {
             urgency: parsed.answers?.urgency ?? DEFAULT_STATE.answers.urgency,
             area: parsed.answers?.area ?? DEFAULT_STATE.answers.area,
