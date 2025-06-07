@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Footer from './Footer'
 
 function LandingPage() {
   const [email, setEmail] = useState('')
@@ -14,7 +15,7 @@ function LandingPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4 bg-white">
+    <div className="min-h-screen flex flex-col items-center justify-center px-4 bg-white pb-16">
       <main className="max-w-md w-full">
         <div className="text-center mb-12">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
@@ -46,6 +47,7 @@ function LandingPage() {
           </div>
         </form>
       </main>
+      <Footer />
     </div>
   )
 }

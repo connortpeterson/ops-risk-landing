@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Footer from './Footer'
 
 function Quiz() {
   const [urgency, setUrgency] = useState(3)
@@ -20,7 +21,7 @@ function Quiz() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4 bg-white">
+    <div className="min-h-screen flex flex-col items-center justify-center px-4 bg-white pb-16">
       <main className="max-w-md w-full">
         <div className="text-center mb-8">
           <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
@@ -152,6 +153,7 @@ function Quiz() {
           </div>
         </form>
       </main>
+      <Footer />
     </div>
   )
 }

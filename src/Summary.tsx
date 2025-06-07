@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Footer from './Footer'
 
 function Summary() {
   const [answers, setAnswers] = useState<{
@@ -36,14 +37,14 @@ function Summary() {
 
   if (!answers) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center px-4 bg-white">
+      <div className="min-h-screen flex flex-col items-center justify-center px-4 bg-white pb-16">
         <p>Loading your results...</p>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4 bg-white">
+    <div className="min-h-screen flex flex-col items-center justify-center px-4 bg-white pb-16">
       <main className="max-w-md w-full">
         <div className="text-center mb-8">
           <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
@@ -94,6 +95,7 @@ function Summary() {
           </button>
         </div>
       </main>
+      <Footer />
     </div>
   )
 }
