@@ -46,7 +46,7 @@ function RisksSummary() {
   const topRisks = getTopRisks()
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4 bg-white">
+    <section className="min-h-screen flex flex-col items-center justify-center bg-white p-4">
       <main className="max-w-md w-full">
         <div className="text-center mb-8">
           <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
@@ -66,21 +66,21 @@ function RisksSummary() {
         </div>
         
         <div className="text-center mb-8">
-          <p className="text-lg text-gray-700">
+          <p className="prose prose-sm md:prose text-gray-700">
             This is just a preview of your execution risks. Get our comprehensive analysis to identify all potential issues.
           </p>
         </div>
         
-        <div className="flex justify-center">
+        <div className="flex justify-center md:justify-start">
           <button
             onClick={handleGetFullReport}
-            className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition duration-200"
+            className="w-full md:w-auto mx-auto bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-md transition duration-200"
           >
             Get Full Report by Email
           </button>
         </div>
       </main>
-    </div>
+    </section>
   )
 }
 
