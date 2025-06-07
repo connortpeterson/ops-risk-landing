@@ -1,15 +1,15 @@
 
 function HeroSection() {
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center bg-white p-4">
+    <section className="min-h-screen flex flex-col items-center justify-center bg-slate-50 text-slate-800 p-6">
       <div className="text-center">
-        <h1 className="text-3xl lg:text-6xl font-bold text-gray-900 mb-6">
+        <h1 className="text-3xl lg:text-6xl font-bold mb-6">
           Worried your next deal's IT/ops risk is hidden?
         </h1>
-        <p className="prose prose-sm md:prose text-gray-700 mb-8 mx-auto">
+        <p className="prose prose-sm md:prose mb-8 mx-auto">
           Get a 1-page execution risk snapshot<br />in under 5 minutes.
         </p>
-        <form className="space-y-4">
+        <form className="space-y-6">
           <input
             type="email"
             placeholder="Enter your email"
