@@ -1,25 +1,17 @@
 import type { Scorecard, ScoreCategory } from '../lib/computeScorecard'
-import { useState } from 'react'
 import { createScorecardPdf } from '../utilities/createScorecardPdf'
 
 interface Props {
   scorecard: Scorecard
 }
 
-function confidenceLabel(total: number): string {
-  if (total >= 16) return 'High'
-  if (total >= 8) return 'Moderate'
+function diligenceSignal(total: number): string {
+  if (total >= 20) return 'High'
+  if (total >= 15) return 'Medium'
   return 'Low'
 }
 
-function iconFor(score: number): string {
-  if (score >= 2) return '✓'
-  if (score === 1) return '⚠️'
-  return '✕'
-}
-
 export default function ScorecardRenderer({ scorecard }: Props) {
-  const [showRationale, setShowRationale] = useState(true)
   async function handleDownload() {
     const bytes = await createScorecardPdf(scorecard)
     const blob = new Blob([bytes], { type: 'application/pdf' })
@@ -30,27 +22,32 @@ export default function ScorecardRenderer({ scorecard }: Props) {
     a.click()
     URL.revokeObjectURL(url)
   }
+  function handleWatchlist() {
+    console.log('add to watchlist', scorecard.ticker)
+  }
+
   return (
-    <div className="max-w-5xl mx-auto py-10 space-y-8">
+    <div className="max-w-5xl mx-auto py-12 space-y-8">
       <header className="text-center space-y-2">
         <h1 className="text-3xl font-bold">{scorecard.ticker}</h1>
-        <div className="text-xl font-medium">
-          Total Score {scorecard.total}/24
-        </div>
+        <div className="text-xl font-medium">Total Score {scorecard.total}/24</div>
         <div className="text-sm text-slate-600">
-          {confidenceLabel(scorecard.total)} Diligence Confidence
+          Diligence Signal: {diligenceSignal(scorecard.total)}
         </div>
         <div className="flex justify-center gap-4 pt-2">
           <button className="btn-primary" onClick={handleDownload}>Download PDF</button>
-          <button className="btn-secondary" onClick={() => setShowRationale((v) => !v)}>
-            {showRationale ? 'Hide Rationale' : 'Explain Score'}
+          <button
+            className="bg-slate-200 text-slate-700 rounded-md px-4 py-3 hover:bg-slate-300"
+            onClick={handleWatchlist}
+          >
+            Watchlist
           </button>
         </div>
       </header>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {scorecard.categories.map((cat) => (
-          <CategoryCard key={cat.name} category={cat} showRationale={showRationale} />
+          <CategoryCard key={cat.name} category={cat} />
         ))}
       </div>
 
@@ -65,25 +62,24 @@ export default function ScorecardRenderer({ scorecard }: Props) {
 
 interface CardProps {
   category: ScoreCategory
-  showRationale: boolean
 }
 
-function CategoryCard({ category, showRationale }: CardProps) {
+function CategoryCard({ category }: CardProps) {
   return (
-    <div className="bg-slate-50 p-6 rounded-xl shadow-sm space-y-4">
+    <div className="bg-white p-6 rounded-xl shadow-md space-y-4">
       <h2 className="font-semibold">
         {category.name} – {category.score}/3
       </h2>
-      <ul className="space-y-2 text-sm">
+      <ul className="space-y-3">
         {category.factors.map((f) => (
-          <li key={f.label} className="flex gap-2">
-            <span>{iconFor(f.score)}</span>
-            <span className="flex-1">
-              {f.label} – {f.score}/3
-              {showRationale && (
-                <span className="block text-slate-600">{f.rationale}</span>
-              )}
-            </span>
+          <li key={f.label}>
+            <div className="flex items-baseline justify-between">
+              <span className="font-semibold">{f.label}</span>
+              <span className="text-sm bg-blue-100 rounded px-2">
+                {f.score}/3
+              </span>
+            </div>
+            <p className="text-sm text-slate-600 mt-1">{f.rationale}</p>
           </li>
         ))}
       </ul>
