@@ -1,38 +1,28 @@
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import { scoreCompany, ScoreBreakdown } from '../../utilities/scoreCompany';
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { scoreCompany, Scorecard } from '../../lib/scoreCompany'
+import ScorecardRenderer from '../../components/ScorecardRenderer'
 
 export default function ScorePage() {
-  const router = useRouter();
-  const { ticker } = router.query;
-  const [breakdown, setBreakdown] = useState<ScoreBreakdown | null>(null);
+  const router = useRouter()
+  const { ticker } = router.query
+  const [scorecard, setScorecard] = useState<Scorecard | null>(null)
 
   useEffect(() => {
     if (typeof ticker === 'string') {
-      setBreakdown(scoreCompany(ticker));
+      void scoreCompany(ticker).then(setScorecard)
     }
-  }, [ticker]);
+  }, [ticker])
 
-  if (!ticker) return <p>Loading...</p>;
-
-  if (!breakdown) return <p>Scoring...</p>;
+  if (!ticker) {
+    return <p className="p-6">Loading...</p>
+  }
 
   return (
-    <main style={{ padding: '2rem' }}>
-      <h1 style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
-        {ticker.toUpperCase()} - Total Score: {breakdown.total}
-      </h1>
-      <ul style={{ marginTop: '1rem' }}>
-        {breakdown.categories.map((cat) => (
-          <li key={cat.name} style={{ marginBottom: '1rem' }}>
-            <h2 style={{ fontWeight: 'bold' }}>{cat.name} - {cat.score}</h2>
-            <p>{cat.rationale}</p>
-          </li>
-        ))}
-      </ul>
-      <button style={{ marginTop: '2rem' }}>
-        Download PDF
-      </button>
-    </main>
-  );
+    <section className="min-h-screen flex items-center justify-center bg-slate-50 p-6">
+      <div className="bg-white shadow-md rounded-md p-6 space-y-4 w-full max-w-2xl">
+        {scorecard ? <ScorecardRenderer scorecard={scorecard} /> : <p>Scoring...</p>}
+      </div>
+    </section>
+  )
 }
