@@ -1,14 +1,16 @@
 import { useNavigate } from 'react-router-dom'
-import usePersistentQuizState from './usePersistentQuizState'
+import { useState } from 'react'
 
 function LandingPage() {
-  const [quizState, setQuizState] = usePersistentQuizState()
+  const [ticker, setTicker] = useState('')
   const navigate = useNavigate()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Navigate to quiz page
-    navigate('/quiz')
+    const trimmed = ticker.trim().toUpperCase()
+    if (trimmed) {
+      navigate(`/score/${trimmed}`)
+    }
   }
 
   return (
@@ -25,15 +27,15 @@ function LandingPage() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
+            <label className="block mb-2 font-medium">
+              Enter a Biotech Ticker (e.g. SRPT, CRSP)
+            </label>
             <input
-              type="email"
-              value={quizState.email}
-              onChange={(e) =>
-                setQuizState((prev) => ({ ...prev, email: e.target.value }))
-              }
-              placeholder="Enter your email"
+              type="text"
+              value={ticker}
+              onChange={(e) => setTicker(e.target.value)}
               required
-              className="w-full max-w-xs md:max-w-md mx-auto px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full max-w-sm p-3 border rounded-md"
             />
           </div>
           <div className="text-center md:text-left">
@@ -41,7 +43,7 @@ function LandingPage() {
               type="submit"
               className="w-full md:w-auto mx-auto bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-md transition duration-200"
             >
-              Continue
+              Run Scorecard
             </button>
           </div>
         </form>
