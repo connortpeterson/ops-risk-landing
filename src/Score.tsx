@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import ScorecardRenderer from '../components/ScorecardRenderer'
-import { computeScorecard } from '../lib/computeScorecard'
 import { crspScorecard } from '../lib/sampleScorecards'
 import { createScorecardPdf } from '../utilities/createScorecardPdf'
 import type { Scorecard } from '../lib/computeScorecard'
@@ -15,7 +14,8 @@ function Score() {
     if (ticker.toUpperCase() === 'CRSP') {
       setScorecard(crspScorecard)
     } else {
-      setScorecard(computeScorecard(ticker))
+      // Placeholder until live scoring is implemented
+      setScorecard(null)
     }
   }, [ticker])
 
@@ -56,7 +56,7 @@ function Score() {
         {scorecard ? (
           <ScorecardRenderer scorecard={scorecard} actions={actions} />
         ) : (
-          <p>Scoring...</p>
+          <p className="text-slate-600">Scorecard coming soon.</p>
         )}
       </main>
     </section>
