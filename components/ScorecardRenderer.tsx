@@ -14,17 +14,17 @@ function diligenceSignal(total: number): string {
 export default function ScorecardRenderer({ scorecard, actions }: Props) {
 
   return (
-    <div className="max-w-5xl mx-auto py-12 space-y-8">
-      <header className="text-center space-y-2">
-        <h1 className="text-3xl font-bold">{scorecard.ticker}</h1>
-        <div className="text-xl font-medium">Total Score {scorecard.total}/24</div>
+    <div className="mx-auto max-w-5xl py-8 sm:py-12 md:py-16 space-y-8 sm:space-y-12">
+      <header className="text-center space-y-2 sm:space-y-3">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">{scorecard.ticker}</h1>
+        <div className="text-lg sm:text-xl md:text-2xl font-medium">Total Score {scorecard.total}/24</div>
         <div className="text-sm text-slate-600">
           Diligence Signal: {diligenceSignal(scorecard.total)}
         </div>
         {actions && <div className="flex justify-center gap-4 pt-2">{actions}</div>}
       </header>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         {scorecard.categories.map((cat) => (
           <CategoryCard key={cat.name} category={cat} />
         ))}
@@ -45,11 +45,11 @@ interface CardProps {
 
 function CategoryCard({ category }: CardProps) {
   return (
-    <div className="bg-white p-6 rounded-xl shadow-md space-y-4">
+    <div className="bg-white p-6 sm:p-8 rounded-xl shadow-md space-y-4 sm:space-y-6">
       <h2 className="font-semibold">
         {category.name} – {category.score}/3
       </h2>
-      <ul className="space-y-3">
+      <ul className="space-y-3 sm:space-y-4">
         {category.factors.map((f) => (
           <li key={f.label}>
             <div className="flex items-baseline justify-between">
