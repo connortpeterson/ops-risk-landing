@@ -1,4 +1,7 @@
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
+import {
+  CircularProgressbarWithChildren,
+  buildStyles,
+} from 'react-circular-progressbar'
 import type { Scorecard } from '../lib/scoreCompany'
 import 'react-circular-progressbar/dist/styles.css'
 
@@ -14,17 +17,17 @@ export default function ScorecardRenderer({ scorecard }: Props) {
     <div className="space-y-6">
       <div className="flex flex-col items-center space-y-2">
         <div className="w-24 h-24">
-          <CircularProgressbar
+          <CircularProgressbarWithChildren
             value={percent}
-            text={`${percent}%`}
             styles={buildStyles({
-              pathColor: '#7c3aed',
-              textColor: '#0f172a',
+              pathColor: '#059669',
               trailColor: '#e2e8f0',
             })}
-          />
+          >
+            <div className="text-4xl font-bold text-blue-900">{percent}%</div>
+          </CircularProgressbarWithChildren>
         </div>
-        <h1 className="text-3xl font-bold">
+        <h1 className="text-3xl font-serif tracking-tight text-blue-900">
           {scorecard.ticker.toUpperCase()}
         </h1>
       </div>
@@ -33,7 +36,7 @@ export default function ScorecardRenderer({ scorecard }: Props) {
         {scorecard.breakdown.map((item) => (
           <div
             key={item.category}
-            className="scorecard bg-slate-50 p-4 rounded-lg shadow-sm flex justify-between items-start"
+            className="scorecard flex justify-between items-start"
           >
             <div>
               <h2 className="font-bold">{item.category}</h2>

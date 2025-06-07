@@ -25,7 +25,7 @@ h3,
 h4,
 h5,
 h6 {
-  @apply font-serif tracking-tight text-primary-900;
+  @apply font-serif text-3xl tracking-tight text-blue-900;
 }
 
 body {
@@ -37,13 +37,17 @@ body {
 
 @layer components {
   .btn-primary {
-    @apply bg-primary-600 text-white hover:bg-primary-700 rounded-md px-4 py-3
+    @apply bg-emerald-600 text-white hover:bg-emerald-700 rounded-md px-4 py-3
       transition-all duration-200 ease-in-out hover:scale-105 active:scale-95;
+  }
+
+  .card {
+    @apply bg-white p-6 shadow-md rounded-lg border border-slate-200 hover:shadow-lg transition-shadow duration-300;
   }
 
   .scorecard,
   .feature {
-    @apply hover:shadow-lg transition-shadow duration-300;
+    @apply card;
   }
 }
 
