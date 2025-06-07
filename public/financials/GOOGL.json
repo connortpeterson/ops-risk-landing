@@ -2,5 +2,6 @@
   "ticker": "GOOGL",
   "price": 178.12,
   "ebitda": "104.2B",
+  "ebitdaPeriod": "TTM",
   "marketCap": "2.0T"
 }

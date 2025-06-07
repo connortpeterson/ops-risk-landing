@@ -2,5 +2,6 @@
   "ticker": "CRSP",
   "price": 79.10,
   "ebitda": "-1.1B",
+  "ebitdaPeriod": "TTM",
   "marketCap": "6.4B"
 }
