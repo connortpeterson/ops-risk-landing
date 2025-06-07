@@ -40,8 +40,8 @@ export default function usePersistentQuizState(): [QuizState, React.Dispatch<Rea
           },
         }
       }
-    } catch {
-      // ignore parse errors
+    } catch (err) {
+      console.warn('Failed to parse stored quiz state', err)
     }
     return DEFAULT_STATE
   })
@@ -49,8 +49,8 @@ export default function usePersistentQuizState(): [QuizState, React.Dispatch<Rea
   useEffect(() => {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
-    } catch {
-      // ignore write errors
+    } catch (err) {
+      console.warn('Failed to persist quiz state', err)
     }
   }, [state])
 
