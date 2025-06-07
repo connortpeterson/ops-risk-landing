@@ -1,5 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import {
+  BeakerIcon,
+  ChartBarIcon,
+  CursorArrowRaysIcon,
+} from '@heroicons/react/24/outline'
+import SiteLogo from './components/SiteLogo'
 
 function LandingPage() {
   const [ticker, setTicker] = useState('')
@@ -14,9 +20,12 @@ function LandingPage() {
   }
 
   return (
-    <section className="bg-slate-50 min-h-screen">
-      <div className="max-w-4xl mx-auto space-y-8 text-center py-16 px-6">
-        <h1 className="text-3xl sm:text-5xl font-serif tracking-tight text-blue-900">
+    <section className="bg-gradient-to-br from-white via-primary-50 to-white min-h-screen">
+      <header className="py-6 px-6 flex justify-center md:justify-start">
+        <SiteLogo icon="audit" size="md" />
+      </header>
+      <div className="max-w-4xl mx-auto space-y-10 text-center py-20 px-6">
+        <h1 className="text-3xl sm:text-5xl font-serif tracking-tight text-primary-900">
           Discover Overlooked Biotech Winners
         </h1>
         <p className="text-slate-700 leading-relaxed">
@@ -41,15 +50,15 @@ function LandingPage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           <div className="feature card space-y-2">
-            <div className="text-2xl">🧬</div>
+            <BeakerIcon className="h-8 w-8 text-primary-600 mx-auto" />
             <p>Evidence-Based Scoring</p>
           </div>
           <div className="feature card space-y-2">
-            <div className="text-2xl">📊</div>
+            <ChartBarIcon className="h-8 w-8 text-primary-600 mx-auto" />
             <p>24-Point Diligence Rubric</p>
           </div>
           <div className="feature card space-y-2">
-            <div className="text-2xl">🔬</div>
+            <CursorArrowRaysIcon className="h-8 w-8 text-primary-600 mx-auto" />
             <p>Built for Asymmetric Alpha</p>
           </div>
         </div>
