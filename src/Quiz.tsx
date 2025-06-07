@@ -132,7 +132,7 @@ function Quiz() {
                     answers: { ...prev.answers, canPay: false },
                   }))
                 }
-                className={`px-4 py-2 rounded-md ${
+                className={`px-4 py-2 rounded-md transition-all duration-200 ease-in-out hover:scale-105 active:scale-95 ${
                   !canPay
                     ? 'bg-blue-600 text-white'
                     : 'bg-gray-200 text-slate-800'
@@ -148,7 +148,7 @@ function Quiz() {
                     answers: { ...prev.answers, canPay: true },
                   }))
                 }
-                className={`px-4 py-2 rounded-md ${
+                className={`px-4 py-2 rounded-md transition-all duration-200 ease-in-out hover:scale-105 active:scale-95 ${
                   canPay
                     ? 'bg-blue-600 text-white'
                     : 'bg-gray-200 text-slate-800'
@@ -164,7 +164,7 @@ function Quiz() {
             <button
               type="submit"
               disabled={!area}
-              className={`w-full md:w-auto mx-auto py-3 px-4 rounded-md transition duration-200 ${
+              className={`w-full md:w-auto mx-auto py-3 px-4 rounded-md transition-all duration-200 ease-in-out hover:scale-105 active:scale-95 ${
                 area
                   ? 'bg-blue-600 hover:bg-blue-700 text-white font-medium'
                   : 'bg-gray-300 text-slate-800 cursor-not-allowed'

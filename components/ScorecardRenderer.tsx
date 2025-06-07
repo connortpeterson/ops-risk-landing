@@ -33,7 +33,7 @@ export default function ScorecardRenderer({ scorecard }: Props) {
         {scorecard.breakdown.map((item) => (
           <div
             key={item.category}
-            className="bg-slate-50 p-4 rounded-lg shadow-sm flex justify-between items-start"
+            className="scorecard bg-slate-50 p-4 rounded-lg shadow-sm flex justify-between items-start"
           >
             <div>
               <h2 className="font-bold">{item.category}</h2>

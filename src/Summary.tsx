@@ -36,7 +36,7 @@ function Summary() {
           </p>
         </div>
 
-        <div className="bg-slate-50 p-6 rounded-lg shadow-sm space-y-6 mb-8">
+        <div className="scorecard bg-slate-50 p-6 rounded-lg shadow-sm space-y-6 mb-8">
           <div>
             <h2 className="text-lg font-medium">Risk Urgency</h2>
             <p>
@@ -70,7 +70,7 @@ function Summary() {
         <div className="flex justify-center md:justify-start">
           <button
             onClick={handleStartOver}
-            className="px-6 py-3 mx-auto md:mx-0 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition duration-200"
+            className="px-6 py-3 mx-auto md:mx-0 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition-all duration-200 ease-in-out hover:scale-105 active:scale-95"
           >
             Start Over
           </button>
