@@ -17,7 +17,7 @@ function HeroSection() {
           />
           <button
             type="submit"
-            className="w-full md:w-auto mx-auto bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-md transition-all duration-200 ease-in-out hover:scale-105 active:scale-95"
+            className="w-full md:w-auto mx-auto bg-primary-600 hover:bg-primary-700 text-white font-medium py-3 px-4 rounded-md transition-all duration-200 ease-in-out hover:scale-105 active:scale-95"
           >
             Continue
           </button>

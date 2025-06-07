@@ -18,7 +18,7 @@ export default function ScorecardRenderer({ scorecard }: Props) {
             value={percent}
             text={`${percent}%`}
             styles={buildStyles({
-              pathColor: '#10b981',
+              pathColor: '#7c3aed',
               textColor: '#0f172a',
               trailColor: '#e2e8f0',
             })}
