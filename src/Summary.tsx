@@ -1,21 +1,10 @@
-import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import usePersistentQuizState, { DEFAULT_STATE } from './usePersistentQuizState'
 
 function Summary() {
-  const [answers, setAnswers] = useState<{
-    urgency: number;
-    area: string;
-    canPay: boolean;
-  } | null>(null)
+  const [quizState, setQuizState] = usePersistentQuizState()
+  const { answers } = quizState
   const navigate = useNavigate()
-  
-  useEffect(() => {
-    // Retrieve quiz answers from localStorage
-    const storedAnswers = localStorage.getItem('quizAnswers')
-    if (storedAnswers) {
-      setAnswers(JSON.parse(storedAnswers))
-    }
-  }, [])
   
   const getUrgencyText = (urgency: number) => {
     switch(urgency) {
@@ -29,18 +18,11 @@ function Summary() {
   }
   
   const handleStartOver = () => {
-    // Clear stored answers and return to landing page
-    localStorage.removeItem('quizAnswers')
+    // Reset stored answers and return to landing page
+    setQuizState(DEFAULT_STATE)
     navigate('/')
   }
 
-  if (!answers) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center px-4 bg-white">
-        <p>Loading your results...</p>
-      </div>
-    )
-  }
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-4 bg-white">

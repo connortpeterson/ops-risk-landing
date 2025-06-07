@@ -1,27 +1,14 @@
-import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import usePersistentQuizState from './usePersistentQuizState'
 
 function RisksSummary() {
-  const [answers, setAnswers] = useState<{
-    urgency: number;
-    area: string;
-    canPay: boolean;
-  } | null>(null)
+  const [quizState] = usePersistentQuizState()
+  const { answers } = quizState
   const navigate = useNavigate()
-  
-  useEffect(() => {
-    // Retrieve quiz answers from localStorage
-    const storedAnswers = localStorage.getItem('quizAnswers')
-    if (storedAnswers) {
-      setAnswers(JSON.parse(storedAnswers))
-    }
-  }, [])
   
   // Function to determine top risks based on quiz answers
   const getTopRisks = () => {
-    if (!answers) return ['No data available', 'No data available']
-    
-    const risks = []
+    const risks = [] as string[]
     
     // Risk based on area of concern
     switch(answers.area) {
@@ -55,13 +42,6 @@ function RisksSummary() {
     navigate('/')
   }
 
-  if (!answers) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center px-4 bg-white">
-        <p>Loading your results...</p>
-      </div>
-    )
-  }
   
   const topRisks = getTopRisks()
 
