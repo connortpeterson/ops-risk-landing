@@ -13,25 +13,25 @@ function Quiz() {
   }
 
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center bg-white p-4">
+    <section className="min-h-screen flex flex-col items-center justify-center bg-slate-50 text-slate-800 p-6">
       <main className="max-w-md w-full">
         <div className="text-center mb-8">
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          <h1 className="text-2xl md:text-3xl font-bold mb-4">
             IT/Ops Risk Assessment
           </h1>
-          <p className="text-lg text-gray-700">
+          <p className="text-lg">
             Please answer these questions to help us understand your needs.
           </p>
         </div>
-        
-        <form onSubmit={handleSubmit} className="space-y-8">
+
+        <form onSubmit={handleSubmit} className="space-y-6">
           {/* Question 1: Urgency Slider */}
-          <div className="space-y-3">
-            <label className="block text-lg font-medium text-gray-900">
+          <div className="space-y-6">
+            <label className="block text-lg font-medium">
               How urgent is your integration risk?
             </label>
             <div className="flex items-center space-x-2">
-              <span className="text-sm text-gray-500">Low</span>
+              <span className="text-sm">Low</span>
               <input
                 type="range"
                 min="1"
@@ -45,16 +45,16 @@ function Quiz() {
                 }
                 className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
               />
-              <span className="text-sm text-gray-500">High</span>
+              <span className="text-sm">High</span>
             </div>
             <div className="text-center text-lg font-medium">
               {urgency}
             </div>
           </div>
-          
+
           {/* Question 2: Area Radio Buttons */}
-          <div className="space-y-3">
-            <label className="block text-lg font-medium text-gray-900">
+          <div className="space-y-6">
+            <label className="block text-lg font-medium">
               Which area worries you most?
             </label>
             <div className="space-y-2">
@@ -73,7 +73,7 @@ function Quiz() {
                   }
                   className="h-4 w-4 text-blue-600 focus:ring-blue-500"
                 />
-                <label htmlFor="cybersecurity" className="ml-2 text-gray-700">
+                <label htmlFor="cybersecurity" className="ml-2">
                   Cybersecurity
                 </label>
               </div>
@@ -92,7 +92,7 @@ function Quiz() {
                   }
                   className="h-4 w-4 text-blue-600 focus:ring-blue-500"
                 />
-                <label htmlFor="erp" className="ml-2 text-gray-700">
+                <label htmlFor="erp" className="ml-2">
                   ERP integration
                 </label>
               </div>
@@ -111,16 +111,16 @@ function Quiz() {
                   }
                   className="h-4 w-4 text-blue-600 focus:ring-blue-500"
                 />
-                <label htmlFor="supply" className="ml-2 text-gray-700">
+                <label htmlFor="supply" className="ml-2">
                   Supply chain
                 </label>
               </div>
             </div>
           </div>
-          
+
           {/* Question 3: Yes/No Toggle */}
-          <div className="space-y-3">
-            <label className="block text-lg font-medium text-gray-900">
+          <div className="space-y-6">
+            <label className="block text-lg font-medium">
               Can you pay up to $5K for a quick risk check?
             </label>
             <div className="flex items-center space-x-4">
@@ -135,7 +135,7 @@ function Quiz() {
                 className={`px-4 py-2 rounded-md ${
                   !canPay
                     ? 'bg-blue-600 text-white'
-                    : 'bg-gray-200 text-gray-700'
+                    : 'bg-gray-200 text-slate-800'
                 }`}
               >
                 No
@@ -151,7 +151,7 @@ function Quiz() {
                 className={`px-4 py-2 rounded-md ${
                   canPay
                     ? 'bg-blue-600 text-white'
-                    : 'bg-gray-200 text-gray-700'
+                    : 'bg-gray-200 text-slate-800'
                 }`}
               >
                 Yes
@@ -167,7 +167,7 @@ function Quiz() {
               className={`w-full md:w-auto mx-auto py-3 px-4 rounded-md transition duration-200 ${
                 area
                   ? 'bg-blue-600 hover:bg-blue-700 text-white font-medium'
-                  : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                  : 'bg-gray-300 text-slate-800 cursor-not-allowed'
               }`}
             >
               Submit

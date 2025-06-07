@@ -12,18 +12,18 @@ function LandingPage() {
   }
 
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center bg-white p-4">
+    <section className="min-h-screen flex flex-col items-center justify-center bg-slate-50 text-slate-800 p-6">
       <main className="max-w-md w-full">
         <div className="text-center mb-12">
-          <h1 className="text-3xl lg:text-6xl font-bold text-gray-900 mb-6">
+          <h1 className="text-3xl lg:text-6xl font-bold mb-6">
             Worried your next deal's IT/ops risk is hidden?
           </h1>
-          <p className="prose prose-sm md:prose text-gray-700 mb-8 mx-auto">
+          <p className="prose prose-sm md:prose mb-8 mx-auto">
             Get a 1-page execution risk snapshot<br />in under 5 minutes.
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <input
               type="email"
@@ -45,7 +45,7 @@ function LandingPage() {
             </button>
           </div>
         </form>
-        <p className="text-center text-sm text-gray-500 mt-4">
+        <p className="text-center text-sm mt-4">
           We follow basic cybersecurity hygiene including rate limiting,
           spam protection, and no third-party sharing.
         </p>

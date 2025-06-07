@@ -46,27 +46,27 @@ function RisksSummary() {
   const topRisks = getTopRisks()
 
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center bg-white p-4">
+    <section className="min-h-screen flex flex-col items-center justify-center bg-slate-50 text-slate-800 p-6">
       <main className="max-w-md w-full">
         <div className="text-center mb-8">
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+          <h1 className="text-2xl md:text-3xl font-bold mb-6">
             Your Top 2 Execution Risks
           </h1>
         </div>
-        
-        <div className="bg-gray-50 p-6 rounded-lg shadow-sm mb-8">
-          <ul className="list-disc pl-5 space-y-4">
-            <li className="text-gray-800 text-lg">
+
+        <div className="bg-slate-50 p-6 rounded-lg shadow-sm mb-8">
+          <ul className="list-disc pl-5 space-y-6">
+            <li className="text-lg">
               <span className="font-medium">Risk #1:</span> {topRisks[0]}
             </li>
-            <li className="text-gray-800 text-lg">
+            <li className="text-lg">
               <span className="font-medium">Risk #2:</span> {topRisks[1]}
             </li>
           </ul>
         </div>
-        
+
         <div className="text-center mb-8">
-          <p className="prose prose-sm md:prose text-gray-700">
+          <p className="prose prose-sm md:prose">
             This is just a preview of your execution risks. Get our comprehensive analysis to identify all potential issues.
           </p>
         </div>

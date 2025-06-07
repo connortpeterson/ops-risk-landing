@@ -19,7 +19,7 @@ function getColor(score: number): string {
 
 function RiskScoreCard({ overallScore, categoryScores }: RiskScoreCardProps) {
   return (
-    <div className="bg-white rounded-xl shadow-sm p-6 grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-md mx-auto">
+    <div className="bg-slate-50 rounded-xl shadow-sm p-6 grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-md mx-auto">
       <div className="flex items-center justify-center">
         <div className="w-32 h-32">
           <CircularProgressbar
@@ -37,7 +37,7 @@ function RiskScoreCard({ overallScore, categoryScores }: RiskScoreCardProps) {
       <div className="space-y-4">
         {categoryScores.map((cat) => (
           <div key={cat.name}>
-            <div className="flex justify-between mb-1 text-sm text-gray-700">
+            <div className="flex justify-between mb-1 text-sm">
               <span>{cat.name}</span>
               <span>{cat.score}%</span>
             </div>

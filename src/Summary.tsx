@@ -25,44 +25,44 @@ function Summary() {
 
 
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center bg-white p-4">
+    <section className="min-h-screen flex flex-col items-center justify-center bg-slate-50 text-slate-800 p-6">
       <main className="max-w-md w-full">
         <div className="text-center mb-8">
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          <h1 className="text-2xl md:text-3xl font-bold mb-4">
             Your Risk Assessment Summary
           </h1>
-          <p className="prose prose-sm md:prose text-gray-700">
+          <p className="prose prose-sm md:prose">
             Based on your responses, here's what we know about your situation:
           </p>
         </div>
-        
-        <div className="bg-gray-50 p-6 rounded-lg shadow-sm space-y-4 mb-8">
+
+        <div className="bg-slate-50 p-6 rounded-lg shadow-sm space-y-6 mb-8">
           <div>
-            <h2 className="text-lg font-medium text-gray-900">Risk Urgency</h2>
-            <p className="text-gray-700">
+            <h2 className="text-lg font-medium">Risk Urgency</h2>
+            <p>
               Your integration risk urgency is <span className="font-medium">{getUrgencyText(answers.urgency)} ({answers.urgency}/5)</span>
             </p>
           </div>
-          
+
           <div>
-            <h2 className="text-lg font-medium text-gray-900">Area of Concern</h2>
-            <p className="text-gray-700">
+            <h2 className="text-lg font-medium">Area of Concern</h2>
+            <p>
               Your primary concern is <span className="font-medium">{answers.area}</span>
             </p>
           </div>
-          
+
           <div>
-            <h2 className="text-lg font-medium text-gray-900">Budget Availability</h2>
-            <p className="text-gray-700">
-              {answers.canPay 
+            <h2 className="text-lg font-medium">Budget Availability</h2>
+            <p>
+              {answers.canPay
                 ? 'You are willing to invest up to $5K for a quick risk check.'
                 : 'You are not currently able to invest $5K for a quick risk check.'}
             </p>
           </div>
         </div>
-        
+
         <div className="text-center mb-8">
-          <p className="prose prose-sm md:prose text-gray-700">
+          <p className="prose prose-sm md:prose">
             Thank you for completing this assessment. Our team will be in touch with you shortly to discuss next steps.
           </p>
         </div>
