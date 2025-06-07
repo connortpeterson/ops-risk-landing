@@ -54,7 +54,7 @@ function RisksSummary() {
           </h1>
         </div>
 
-        <div className="bg-slate-50 p-6 rounded-lg shadow-sm mb-8">
+        <div className="scorecard bg-slate-50 p-6 rounded-lg shadow-sm mb-8">
           <ul className="list-disc pl-5 space-y-6">
             <li className="text-lg">
               <span className="font-medium">Risk #1:</span> {topRisks[0]}
@@ -74,7 +74,7 @@ function RisksSummary() {
         <div className="flex justify-center md:justify-start">
           <button
             onClick={handleGetFullReport}
-            className="w-full md:w-auto mx-auto bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-md transition duration-200"
+            className="w-full md:w-auto mx-auto bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-md transition-all duration-200 ease-in-out hover:scale-105 active:scale-95"
           >
             Get Full Report by Email
           </button>

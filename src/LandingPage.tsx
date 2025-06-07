@@ -40,15 +40,15 @@ function LandingPage() {
         </form>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm pt-8">
-          <div className="space-y-2">
+          <div className="feature space-y-2">
             <div className="text-2xl">🧬</div>
             <p>Evidence-Based Scoring</p>
           </div>
-          <div className="space-y-2">
+          <div className="feature space-y-2">
             <div className="text-2xl">📊</div>
             <p>24-Point Diligence Rubric</p>
           </div>
-          <div className="space-y-2">
+          <div className="feature space-y-2">
             <div className="text-2xl">🔬</div>
             <p>Built for Asymmetric Alpha</p>
           </div>

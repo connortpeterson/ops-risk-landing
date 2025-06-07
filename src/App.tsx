@@ -4,6 +4,7 @@ import Quiz from './Quiz'
 import Summary from './Summary'
 import RisksSummary from './RisksSummary'
 import Score from './Score'
+import TrustFooter from './components/TrustFooter'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/score/:ticker" element={<Score />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
+      <TrustFooter />
     </Router>
   )
 }
