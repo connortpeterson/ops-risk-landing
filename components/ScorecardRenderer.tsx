@@ -1,5 +1,6 @@
 import type { Scorecard, ScoreCategory } from '../lib/computeScorecard'
 import { useState } from 'react'
+import { createScorecardPdf } from '../utilities/createScorecardPdf'
 
 interface Props {
   scorecard: Scorecard
@@ -19,6 +20,16 @@ function iconFor(score: number): string {
 
 export default function ScorecardRenderer({ scorecard }: Props) {
   const [showRationale, setShowRationale] = useState(true)
+  async function handleDownload() {
+    const bytes = await createScorecardPdf(scorecard)
+    const blob = new Blob([bytes], { type: 'application/pdf' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `${scorecard.ticker}-scorecard.pdf`
+    a.click()
+    URL.revokeObjectURL(url)
+  }
   return (
     <div className="max-w-5xl mx-auto py-10 space-y-8">
       <header className="text-center space-y-2">
@@ -30,7 +41,7 @@ export default function ScorecardRenderer({ scorecard }: Props) {
           {confidenceLabel(scorecard.total)} Diligence Confidence
         </div>
         <div className="flex justify-center gap-4 pt-2">
-          <button className="btn-primary">Download PDF</button>
+          <button className="btn-primary" onClick={handleDownload}>Download PDF</button>
           <button className="btn-secondary" onClick={() => setShowRationale((v) => !v)}>
             {showRationale ? 'Hide Rationale' : 'Explain Score'}
           </button>
