@@ -1,8 +1,8 @@
 import type { Scorecard, ScoreCategory } from '../lib/computeScorecard'
-import { createScorecardPdf } from '../utilities/createScorecardPdf'
 
 interface Props {
   scorecard: Scorecard
+  actions?: React.ReactNode
 }
 
 function diligenceSignal(total: number): string {
@@ -11,20 +11,7 @@ function diligenceSignal(total: number): string {
   return 'Low'
 }
 
-export default function ScorecardRenderer({ scorecard }: Props) {
-  async function handleDownload() {
-    const bytes = await createScorecardPdf(scorecard)
-    const blob = new Blob([bytes], { type: 'application/pdf' })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = `${scorecard.ticker}-scorecard.pdf`
-    a.click()
-    URL.revokeObjectURL(url)
-  }
-  function handleWatchlist() {
-    console.log('add to watchlist', scorecard.ticker)
-  }
+export default function ScorecardRenderer({ scorecard, actions }: Props) {
 
   return (
     <div className="max-w-5xl mx-auto py-12 space-y-8">
@@ -34,15 +21,7 @@ export default function ScorecardRenderer({ scorecard }: Props) {
         <div className="text-sm text-slate-600">
           Diligence Signal: {diligenceSignal(scorecard.total)}
         </div>
-        <div className="flex justify-center gap-4 pt-2">
-          <button className="btn-primary" onClick={handleDownload}>Download PDF</button>
-          <button
-            className="bg-slate-200 text-slate-700 rounded-md px-4 py-3 hover:bg-slate-300"
-            onClick={handleWatchlist}
-          >
-            Watchlist
-          </button>
-        </div>
+        {actions && <div className="flex justify-center gap-4 pt-2">{actions}</div>}
       </header>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
