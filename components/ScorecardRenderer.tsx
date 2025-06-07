@@ -1,5 +1,5 @@
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
-import { Scorecard } from '../lib/scoreCompany'
+import type { Scorecard } from '../lib/scoreCompany'
 import 'react-circular-progressbar/dist/styles.css'
 
 interface Props {
