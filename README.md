@@ -32,6 +32,10 @@ Click the **Watchlist** button on any scorecard to save the ticker locally. View
 your saved tickers at `/watchlist`.
 
 The `dist` directory will contain the optimized site with compiled Tailwind utilities.
+## API Example
+
+Run `eodhd_api_example.py` to fetch sample data from the EODHD Fundamental Data, Insider Transactions, and Earnings Calendar APIs. Set an `EODHD_API_TOKEN` environment variable with your API key before running.
+
 
 ## License
 
