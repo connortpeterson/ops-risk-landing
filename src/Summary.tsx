@@ -25,13 +25,13 @@ function Summary() {
 
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4 bg-white">
+    <section className="min-h-screen flex flex-col items-center justify-center bg-white p-4">
       <main className="max-w-md w-full">
         <div className="text-center mb-8">
           <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
             Your Risk Assessment Summary
           </h1>
-          <p className="text-lg text-gray-700">
+          <p className="prose prose-sm md:prose text-gray-700">
             Based on your responses, here's what we know about your situation:
           </p>
         </div>
@@ -62,21 +62,21 @@ function Summary() {
         </div>
         
         <div className="text-center mb-8">
-          <p className="text-lg text-gray-700">
+          <p className="prose prose-sm md:prose text-gray-700">
             Thank you for completing this assessment. Our team will be in touch with you shortly to discuss next steps.
           </p>
         </div>
         
-        <div className="flex justify-center">
+        <div className="flex justify-center md:justify-start">
           <button
             onClick={handleStartOver}
-            className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition duration-200"
+            className="px-6 py-3 mx-auto md:mx-0 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition duration-200"
           >
             Start Over
           </button>
         </div>
       </main>
-    </div>
+    </section>
   )
 }
 
