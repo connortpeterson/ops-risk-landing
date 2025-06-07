@@ -4,6 +4,7 @@ import ScorecardRenderer from '../components/ScorecardRenderer'
 import { crspScorecard } from '../lib/sampleScorecards'
 import { createScorecardPdf } from '../utilities/createScorecardPdf'
 import type { Scorecard } from '../lib/computeScorecard'
+import { computeScorecard } from '../lib/computeScorecard'
 import useWatchlist from './useWatchlist'
 
 function Score() {
@@ -16,8 +17,7 @@ function Score() {
     if (ticker.toUpperCase() === 'CRSP') {
       setScorecard(crspScorecard)
     } else {
-      // Placeholder until live scoring is implemented
-      setScorecard(null)
+      setScorecard(computeScorecard(ticker))
     }
   }, [ticker])
 

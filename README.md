@@ -3,7 +3,7 @@
 This project was bootstrapped with [Vite](https://vitejs.dev/) using the React + TypeScript template.
 Tailwind CSS is configured for styling, and React Router provides navigation.
 
-The Score page now supports PDF export and a persistent watchlist.
+The Score page now supports PDF export, a persistent watchlist, and dynamic scoring for any ticker.
 
 ## Development
 
