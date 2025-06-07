@@ -134,7 +134,7 @@ function Quiz() {
                 }
                 className={`px-4 py-2 rounded-md transition-all duration-200 ease-in-out hover:scale-105 active:scale-95 ${
                   !canPay
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-primary-600 text-white'
                     : 'bg-gray-200 text-slate-800'
                 }`}
               >
@@ -150,7 +150,7 @@ function Quiz() {
                 }
                 className={`px-4 py-2 rounded-md transition-all duration-200 ease-in-out hover:scale-105 active:scale-95 ${
                   canPay
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-primary-600 text-white'
                     : 'bg-gray-200 text-slate-800'
                 }`}
               >
@@ -166,7 +166,7 @@ function Quiz() {
               disabled={!area}
               className={`w-full md:w-auto mx-auto py-3 px-4 rounded-md transition-all duration-200 ease-in-out hover:scale-105 active:scale-95 ${
                 area
-                  ? 'bg-blue-600 hover:bg-blue-700 text-white font-medium'
+                  ? 'bg-primary-600 hover:bg-primary-700 text-white font-medium'
                   : 'bg-gray-300 text-slate-800 cursor-not-allowed'
               }`}
             >
