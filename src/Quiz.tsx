@@ -1,11 +1,35 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function Quiz() {
   const [urgency, setUrgency] = useState(3)
   const [area, setArea] = useState('')
   const [canPay, setCanPay] = useState(false)
+  const [showResume, setShowResume] = useState(false)
   const navigate = useNavigate()
+
+  // Load draft answers on mount
+  useEffect(() => {
+    const draft = localStorage.getItem('quiz-draft')
+    if (draft) {
+      try {
+        const parsed = JSON.parse(draft)
+        if (typeof parsed.urgency === 'number') setUrgency(parsed.urgency)
+        if (typeof parsed.area === 'string') setArea(parsed.area)
+        if (typeof parsed.canPay === 'boolean') setCanPay(parsed.canPay)
+        setShowResume(true)
+      } catch {
+        // ignore invalid draft
+      }
+    }
+  }, [])
+
+  const saveDraft = (u: number, a: string, c: boolean) => {
+    localStorage.setItem(
+      'quiz-draft',
+      JSON.stringify({ urgency: u, area: a, canPay: c })
+    )
+  }
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -15,6 +39,8 @@ function Quiz() {
       area,
       canPay
     }))
+    // Clear any saved draft once the quiz is completed
+    localStorage.removeItem('quiz-draft')
     // Navigate to risks summary page
     navigate('/risks')
   }
@@ -22,6 +48,11 @@ function Quiz() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-4 bg-white">
       <main className="max-w-md w-full">
+        {showResume && (
+          <div className="mb-4 text-center text-green-700 text-sm">
+            Resume where you left off
+          </div>
+        )}
         <div className="text-center mb-8">
           <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
             IT/Ops Risk Assessment
@@ -44,7 +75,11 @@ function Quiz() {
                 min="1"
                 max="5"
                 value={urgency}
-                onChange={(e) => setUrgency(parseInt(e.target.value))}
+                onChange={(e) => {
+                  const val = parseInt(e.target.value)
+                  setUrgency(val)
+                  saveDraft(val, area, canPay)
+                }}
                 className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
               />
               <span className="text-sm text-gray-500">High</span>
@@ -67,7 +102,11 @@ function Quiz() {
                   name="area"
                   value="Cybersecurity"
                   checked={area === 'Cybersecurity'}
-                  onChange={(e) => setArea(e.target.value)}
+                  onChange={(e) => {
+                    const val = e.target.value
+                    setArea(val)
+                    saveDraft(urgency, val, canPay)
+                  }}
                   className="h-4 w-4 text-blue-600 focus:ring-blue-500"
                 />
                 <label htmlFor="cybersecurity" className="ml-2 text-gray-700">
@@ -81,7 +120,11 @@ function Quiz() {
                   name="area"
                   value="ERP integration"
                   checked={area === 'ERP integration'}
-                  onChange={(e) => setArea(e.target.value)}
+                  onChange={(e) => {
+                    const val = e.target.value
+                    setArea(val)
+                    saveDraft(urgency, val, canPay)
+                  }}
                   className="h-4 w-4 text-blue-600 focus:ring-blue-500"
                 />
                 <label htmlFor="erp" className="ml-2 text-gray-700">
@@ -95,7 +138,11 @@ function Quiz() {
                   name="area"
                   value="Supply chain"
                   checked={area === 'Supply chain'}
-                  onChange={(e) => setArea(e.target.value)}
+                  onChange={(e) => {
+                    const val = e.target.value
+                    setArea(val)
+                    saveDraft(urgency, val, canPay)
+                  }}
                   className="h-4 w-4 text-blue-600 focus:ring-blue-500"
                 />
                 <label htmlFor="supply" className="ml-2 text-gray-700">
@@ -113,7 +160,10 @@ function Quiz() {
             <div className="flex items-center space-x-4">
               <button
                 type="button"
-                onClick={() => setCanPay(false)}
+                onClick={() => {
+                  setCanPay(false)
+                  saveDraft(urgency, area, false)
+                }}
                 className={`px-4 py-2 rounded-md ${
                   !canPay 
                     ? 'bg-blue-600 text-white' 
@@ -124,7 +174,10 @@ function Quiz() {
               </button>
               <button
                 type="button"
-                onClick={() => setCanPay(true)}
+                onClick={() => {
+                  setCanPay(true)
+                  saveDraft(urgency, area, true)
+                }}
                 className={`px-4 py-2 rounded-md ${
                   canPay 
                     ? 'bg-blue-600 text-white' 
