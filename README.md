@@ -16,6 +16,14 @@ npm run dev
 npm run build
 ```
 
+## Linting
+
+Ensure dependencies are installed with `npm install`, then run:
+
+```bash
+npm run lint
+```
+
 The `dist` directory will contain the optimized site with compiled Tailwind utilities.
 
 ## License
