@@ -1,21 +1,31 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import posthog from 'posthog-js'
+import { useUtm } from './UtmContext'
 
 function Quiz() {
   const [urgency, setUrgency] = useState(3)
   const [area, setArea] = useState('')
   const [canPay, setCanPay] = useState(false)
   const navigate = useNavigate()
+  const utm = useUtm()
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Store the quiz answers in localStorage to retrieve on risks summary page
-    localStorage.setItem('quizAnswers', JSON.stringify({
-      urgency,
-      area,
-      canPay
-    }))
-    // Navigate to risks summary page
+    const answers = { urgency, area, canPay }
+    localStorage.setItem('quizAnswers', JSON.stringify(answers))
+
+    try {
+      await fetch('/api/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...answers, utm }),
+      })
+    } catch (err) {
+      console.error(err)
+    }
+
+    posthog.capture('quiz_submitted', { ...answers, ...utm })
     navigate('/risks')
   }
 
