@@ -7,6 +7,9 @@
 /.next/
 /out/
 
+# custom dist directory
+/dist/
+
 # production
 /build
 
